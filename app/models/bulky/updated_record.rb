@@ -1,8 +1,6 @@
 class Bulky::UpdatedRecord < ActiveRecord::Base
   self.table_name = 'bulky_updated_records'
 
-  serialize :updatable_changes, Hash
-
   # updatable_changes can be blank on a mass assignment security violation
   validates :bulk_update_id, :updatable, presence: true
 

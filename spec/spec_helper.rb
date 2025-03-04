@@ -3,8 +3,8 @@ ENV['BULKY_QUEUE'] = 'bulky_test'
 
 require File.expand_path("../dummy/config/application.rb",  __FILE__)
 require 'rspec/rails'
-require 'database_cleaner'
-require 'sidekiq/api'
+# require 'database_cleaner'
+# require 'sidekiq/api'
 require 'pry'
 
 # Rails.backtrace_cleaner.remove_silencers!
@@ -35,7 +35,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
-    bulky_queue.clear
+    # bulky_queue.clear
   end
 
 end

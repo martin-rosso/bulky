@@ -1,6 +1,12 @@
-test: &test
-  adapter: sqlite3
-  database: db/bulky_test.sqlite3
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
 
 development:
-  <<: *test
+  <<: *default
+  database: bulky_development
+
+test:
+  <<: *default
+  database: bulky_test

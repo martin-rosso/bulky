@@ -1,8 +1,8 @@
-class CreateBulkyTables < ActiveRecord::Migration
+class CreateBulkyTables < ActiveRecord::Migration[7.2]
   def change
     create_table :bulky_bulk_updates, force: true do |t|
-      t.text :ids,     null: false
-      t.text :updates, null: false
+      t.integer :ids, array: true, null: false
+      t.jsonb :updates,  null: false
       t.integer :initiated_by_id
 
       t.timestamps null: false
@@ -13,7 +13,7 @@ class CreateBulkyTables < ActiveRecord::Migration
       t.integer :bulk_update_id,    null: false
       t.integer :updatable_id,      null: false
       t.string  :updatable_type,    null: false
-      t.text    :updatable_changes, null: false
+      t.jsonb    :updatable_changes, null: false
       t.string  :error_message
       t.text    :error_backtrace
 

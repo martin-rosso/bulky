@@ -12,3 +12,5 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+
+gem 'database_cleaner-active_record', '~> 2.2.0'

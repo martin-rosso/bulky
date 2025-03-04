@@ -1,4 +1,4 @@
-class CreateAccounts < ActiveRecord::Migration
+class CreateAccounts < ActiveRecord::Migration[7.2]
   def up
     create_table :accounts, force: true do |t|
       t.string :business, null: false

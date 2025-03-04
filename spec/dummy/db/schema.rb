@@ -1,49 +1,47 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817161700) do
+ActiveRecord::Schema[7.2].define(version: 2015_08_17_161700) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "business",        null: false
-    t.string   "contact"
-    t.integer  "age"
-    t.date     "last_contact_on"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "business", null: false
+    t.string "contact"
+    t.integer "age"
+    t.date "last_contact_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bulky_bulk_updates", force: :cascade do |t|
-    t.text     "ids",             null: false
-    t.text     "updates",         null: false
-    t.integer  "initiated_by_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer "ids", null: false, array: true
+    t.jsonb "updates", null: false
+    t.integer "initiated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["initiated_by_id"], name: "index_bulky_bulk_updates_on_initiated_by_id"
   end
-
-  add_index "bulky_bulk_updates", ["initiated_by_id"], name: "index_bulky_bulk_updates_on_initiated_by_id"
 
   create_table "bulky_updated_records", force: :cascade do |t|
-    t.integer  "bulk_update_id",    null: false
-    t.integer  "updatable_id",      null: false
-    t.string   "updatable_type",    null: false
-    t.text     "updatable_changes", null: false
-    t.string   "error_message"
-    t.text     "error_backtrace"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer "bulk_update_id", null: false
+    t.integer "updatable_id", null: false
+    t.string "updatable_type", null: false
+    t.jsonb "updatable_changes", null: false
+    t.string "error_message"
+    t.text "error_backtrace"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bulk_update_id"], name: "index_bulky_updated_records_on_bulk_update_id"
+    t.index ["updatable_type", "updatable_id"], name: "index_bulky_updated_records_on_updatable_type_and_updatable_id"
   end
-
-  add_index "bulky_updated_records", ["bulk_update_id"], name: "index_bulky_updated_records_on_bulk_update_id"
-  add_index "bulky_updated_records", ["updatable_type", "updatable_id"], name: "index_bulky_updated_records_on_updatable_type_and_updatable_id"
-
 end

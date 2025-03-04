@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', "~> 7.2"
 
   s.add_development_dependency "pry"
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails",      "~> 6.1.3"
   s.add_development_dependency 'database_cleaner-active_record', '~> 2.2.0'
 end

@@ -25,7 +25,6 @@ Then in your shell prompt
   bundle
   rake bulky_engine:install:migrations
   rake db:migrate
-  sidekiq
 ```
 
 ## Usage
@@ -41,4 +40,4 @@ Command Line
 ```
 
 This will enqueue the `Bulky::Updater` to update each account when the job is
-processed by Sidekiq
+processed by Active Job
