@@ -26,10 +26,10 @@ describe Bulky::BulkUpdate do
   describe "serialization" do
     it "serializes updates as a hash" do
       update.ids = [1]
-      update.updates = {foo: 'on you'}
+      update.updates = { 'foo' => 'on you'}
       update.save!
       update.reload
-      expect(update.updates).to eq(foo: 'on you')
+      expect(update.updates).to eq( 'foo' => 'on you')
     end
 
     it "serializes ids as an array" do

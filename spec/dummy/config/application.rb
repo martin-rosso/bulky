@@ -8,6 +8,7 @@ Bundler.setup
 # for everything: require "rails/all"
 require "action_controller/railtie"
 require "active_record/railtie"
+require "active_job/railtie"
 require "action_view/railtie"
 
 Bundler.require
@@ -19,6 +20,8 @@ module Dummy
     config.secret_key_base = 'http://s3-ec.buzzfed.com/static/enhanced/webdr03/2013/5/25/8/anigif_enhanced-buzz-11857-1369483324-0.gif'
     config.eager_load = false
     config.action_controller.allow_forgery_protection    = false
+    config.active_job.queue_adapter = :test
+
 
     # Raise exceptions instead of rendering exception templates
     config.action_dispatch.show_exceptions = false

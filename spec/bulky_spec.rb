@@ -12,8 +12,8 @@ describe Bulky do
     end
 
     it "will enqueue a Bulky::Update with the class and updates for each id provided" do
-      expect(Bulky::Worker).to receive(:perform_async).with('Account', 10, 5)
-      expect(Bulky::Worker).to receive(:perform_async).with('Account', 25, 5)
+      expect(Bulky::Worker).to receive(:perform_later).with('Account', 10, 5)
+      expect(Bulky::Worker).to receive(:perform_later).with('Account', 25, 5)
       Bulky.enqueue_update(Account, ids, updates)
     end
 

@@ -8,7 +8,7 @@ class Bulky::UpdatesController < ApplicationController
       redirect_to bulky_edit_path(model: params[:model]), alert: I18n.t('flash.alert.blank_ids') and return
     end
 
-    unless params[:bulk].is_a?(Hash)
+    unless params[:bulk].is_a?(ActionController::Parameters)
       redirect_to bulky_edit_path(model: params[:model]), alert: I18n.t('flash.alert.bulk_not_hash') and return
     end
 

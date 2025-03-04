@@ -43,7 +43,7 @@ describe Bulky::UpdatedRecord do
       record.updatable_changes = {contact: [nil, 'Awesome-o-tron']}
       record.save(validate: false) # i know updatable can't be blank...
       record.reload
-      expect(record.updatable_changes).to eq(contact: [nil, 'Awesome-o-tron'])
+      expect(record.updatable_changes).to eq('contact' => [nil, 'Awesome-o-tron'])
     end
   end
 

@@ -40,12 +40,13 @@ RSpec.configure do |config|
 
 end
 
-def bulky_queue
-  @bulky_queue ||= Sidekiq::Queue.new(Bulky::Worker::QUEUE)
-end
+# def bulky_queue
+#   byebug
+#   @bulky_queue ||= Sidekiq::Queue.new(Bulky::Worker::QUEUE)
+# end
 
-def process_bulky_queue_item
-  job = bulky_queue.first
-  job.klass.constantize.new.perform(*job.args)
-  job.delete
-end
+# def process_bulky_queue_item
+#   job = bulky_queue.first
+#   job.klass.constantize.new.perform(*job.args)
+#   job.delete
+# end

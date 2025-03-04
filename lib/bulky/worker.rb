@@ -1,5 +1,5 @@
 module Bulky
-  class Worker
+  class Worker < ActiveJob::Base
     QUEUE = ENV.fetch('BULKY_QUEUE', 'default').freeze
 
     # include Sidekiq::Worker
