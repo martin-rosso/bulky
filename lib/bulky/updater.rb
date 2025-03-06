@@ -21,6 +21,11 @@ module Bulky
     end
 
     def update!
+      # FIXME: no depender de Pundit, habilitar un callback
+      policy = Pundit.policy!(Current.user, model)
+      unless policy.update?
+        raise Pundit::NotAuthorizedError, query: :update, record: model, policy:
+      end
       model.attributes      = updates
       log.updatable_changes = model.changes
       model.save!

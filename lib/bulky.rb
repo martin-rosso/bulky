@@ -6,6 +6,7 @@ module Bulky
   def enqueue_update(model, ids, updates)
     bulk_update = log_bulk_update(ids, updates)
 
+    # FIXME: qué onda, no es demasiados workers?
     ids.each do |update_id|
       Bulky::Worker.perform_later model.name, update_id, bulk_update.id
     end

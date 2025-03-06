@@ -1,4 +1,5 @@
-class Bulky::UpdatesController < ApplicationController
+# FIXME: make customizable
+class Bulky::UpdatesController < PgEngine::TenantController
 
   def edit
   end
@@ -34,8 +35,8 @@ class Bulky::UpdatesController < ApplicationController
     Bulky.parse_ids(params[:ids])
   end
 
+  # FIXME: ver si es necesario
   def delete_blank(hash)
     hash.delete_if { |k,v| v.empty? or Hash === v && delete_blank(v).empty? }
   end
-
 end
